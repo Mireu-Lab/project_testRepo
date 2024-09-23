@@ -2,5 +2,24 @@ version: '3.8'
 
 services:
   project_testrepo_api:
-    build: ../../api
+    build:
+      context: ../../api
+      dockerfile: dockerfile.package
+
+    container_name: project_testrepo_api
+    restart: always
+
+    networks:
+      - project_testrepo
+
+    depends_on:
+      - project_testrepo_api_db
+
+  project_testrepo_db:
+    image: mysql:8.0
     
+    container_name: project_testrepo_db
+    restart: always
+
+    environment:
+      MYSQL_ROOT_PASSWORD: project_testrepo_db
