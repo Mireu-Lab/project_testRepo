@@ -3,6 +3,9 @@ FROM python:3.12.4-alpine
 RUN apk update&&\
     apk upgrade
 
+RUN pip3 install "fastapi[standard]" "uvicorn[standard]" &&\
+    apk add uvicorn -y
+
 RUN mkdir /app /cloneRepo
 WORKDIR /app
 
