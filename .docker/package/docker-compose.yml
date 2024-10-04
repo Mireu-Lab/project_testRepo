@@ -23,3 +23,6 @@ services:
 
     environment:
       MYSQL_ROOT_PASSWORD: project_testrepo_db
+
+networks:
+  project_testrepo:
