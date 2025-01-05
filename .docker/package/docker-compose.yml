@@ -9,6 +9,9 @@ services:
     container_name: project_testrepo_api
     restart: always
 
+    ports:
+      - 80:5000
+
     networks:
       - project_testrepo
 
