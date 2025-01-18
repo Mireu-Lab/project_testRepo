@@ -28,10 +28,10 @@ conn.commit()
 
 @app.post("/todos/", response_model=TodoItem, status_code=status.HTTP_201_CREATED)
 async def create_todo(todo: TodoItem):
-    cursor.execute(f"INSERT INTO todos (title, completed) VALUES ({todo.title}, {todo.completed})")
+    cursor.execute(f"INSERT INTO todos (title, completed) VALUES ('{todo.title}', {todo.completed})")
     conn.commit()
-    cursor.execute("SELECT last_insert_rowid()")
-    todo.id = cursor.fetchone()[0]
+    # cursor.execute("SELECT last_insert_rowid()")
+    # todo.id = cursor.fetchone()[0]
     return todo
 
 
@@ -54,7 +54,7 @@ async def read_todo(todo_id: int):
 
 @app.put("/todos/{todo_id}", response_model=TodoItem)
 async def update_todo(todo_id: int, todo: TodoItem):
-    cursor.execute(f"UPDATE todos SET title = {todo.title}, completed = {todo.completed} WHERE id = {todo_id}")
+    cursor.execute(f"UPDATE todos SET title = '{todo.title}', completed = {todo.completed} WHERE id = {todo_id}")
     conn.commit()
     if cursor.rowcount == 0:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Todo not found")
