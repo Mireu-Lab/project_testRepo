@@ -11,15 +11,3 @@ services:
 
     ports:
       - 8000:8000
-
-    depends_on:
-      - project_testrepo_db
-
-  project_testrepo_db:
-    image: mysql:8.0
-    
-    container_name: project_testrepo_db
-    restart: always
-
-    environment:
-      MYSQL_ROOT_PASSWORD: project_testrepo_db
