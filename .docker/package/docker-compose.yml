@@ -9,11 +9,8 @@ services:
     container_name: project_testrepo_api
     restart: always
 
-    networks:
-      - project_testrepo
-
     depends_on:
-      - project_testrepo_api_db
+      - project_testrepo_db
 
   project_testrepo_db:
     image: mysql:8.0

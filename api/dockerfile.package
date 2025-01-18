@@ -1,12 +1,12 @@
 FROM python:3.12.4-alpine
 
-RUN apk update&&\
+RUN apk update &&\
     apk upgrade
 
-RUN pip3 install "fastapi[standard]" "uvicorn[standard]" &&\
-    apk add uvicorn -y
+RUN apk add uvicorn &&\
+    pip3 install "fastapi[standard]" "uvicorn[standard]"
 
-RUN mkdir /app /cloneRepo
+RUN mkdir /app
 WORKDIR /app
 
 COPY . .
